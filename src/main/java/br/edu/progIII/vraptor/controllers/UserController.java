@@ -11,7 +11,10 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.edu.progIII.vraptor.model.User;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,6 +28,9 @@ public class UserController {
     @Inject
     private Result result;
     
+//    @Inject
+    private HttpSession session;
+    
     @Get("novo")
     public void registerView(){
     
@@ -32,7 +38,9 @@ public class UserController {
     
     @Post("salvar")
     public void save(User user){
-       result.include("user", user);
+        List<User> userList = new ArrayList<>();
+        userList.add(user);
+       result.include("userList", userList);
        result.redirectTo(this).registerView();
     }
     
