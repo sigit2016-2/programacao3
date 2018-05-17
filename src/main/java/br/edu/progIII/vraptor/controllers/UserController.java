@@ -10,38 +10,47 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.edu.progIII.vraptor.components.UserSession;
 import br.edu.progIII.vraptor.model.User;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author leonardo
  */
 @Controller
-@Path("usuario")
+@Path("usuario")//Define um caminho (inicial - prefixo) para todas as ações do controller
 public class UserController {
-  
-    
+
+    /*Result (VRaptor) = Permite modificar rotas e incluir objetos que 
+    serão exibidos na view
+     */
     @Inject
     private Result result;
-    
-//    @Inject
-    private HttpSession session;
-    
+
+    @Inject
+    private UserSession userSession;
+
+    //usuario/novo
     @Get("novo")
-    public void registerView(){
-    
+    public void registerView() {
+
     }
-    
+
+    //usuario/salvar
     @Post("salvar")
-    public void save(User user){
-        List<User> userList = new ArrayList<>();
-        userList.add(user);
-       result.include("userList", userList);
-       result.redirectTo(this).registerView();
+    public void save(User user) {
+        userSession.addUser(user);
+        /*
+        Redireciona (SendRedirect) para uma rota do próprio (this) 
+        controller. No caso, a rota é registerView
+         */
+        result.redirectTo(this).registerView();
     }
-    
+
+    @Get("apagar")
+    public void delete() {
+        userSession.deleteAll();
+        result.redirectTo(this).registerView();
+    }
 }
