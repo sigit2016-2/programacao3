@@ -5,6 +5,8 @@
  */
 package br.edu.progIII.vraptor.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author leonardo
@@ -15,6 +17,11 @@ public class User {
     private String name;
     private String password;
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+    
     public String getName() {
         return name;
     }
@@ -30,6 +37,23 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        User objUser = (User) obj;
+        boolean result = false;
+        if (this.name.equalsIgnoreCase(objUser.getName()) &&
+                this.password.equalsIgnoreCase(objUser.getPassword())){
+           result= true;
+        }
+        return result;
+    }
+
+   
+
+    
+
+    
     
     
 }

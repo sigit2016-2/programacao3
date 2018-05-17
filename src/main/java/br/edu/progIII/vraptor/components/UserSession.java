@@ -23,7 +23,13 @@ import javax.inject.Named;
 public class UserSession implements Serializable{
     
     private List<User> users  = new ArrayList<>();
+
+    public UserSession() {
+       users.add(new User("João", "123"));
+       System.out.println("Init User Session " + users);
+    }
     
+  
     public void addUser(User user){
        users.add(user);
     }
