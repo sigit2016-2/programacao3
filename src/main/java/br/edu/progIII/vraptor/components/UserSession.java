@@ -23,13 +23,25 @@ import javax.inject.Named;
 public class UserSession implements Serializable{
     
     private List<User> users  = new ArrayList<>();
-
+    private User userLogged;
+    
+    
     public UserSession() {
        users.add(new User("João", "123"));
        System.out.println("Init User Session " + users);
     }
+
+    public User getUserLogged() {
+        return userLogged;
+    }
+
+    public void setUserLogged(User userLogged) {
+        this.userLogged = userLogged;
+    }
     
-  
+    public boolean isUserLogged(){
+         return userLogged != null;
+    }
     public void addUser(User user){
        users.add(user);
     }

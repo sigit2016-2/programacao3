@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.edu.progIII.vraptor.annotations.Private;
 import br.edu.progIII.vraptor.components.UserSession;
 import br.edu.progIII.vraptor.model.User;
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
  * @author leonardo
  */
 @Controller
+@Private
 @Path("usuario")//Define um caminho (inicial - prefixo) para todas as ações do controller
 public class UserController {
 
@@ -34,7 +36,7 @@ public class UserController {
     //usuario/novo
     @Get("novo")
     public void registerView() {
-
+      
     }
 
     //usuario/salvar

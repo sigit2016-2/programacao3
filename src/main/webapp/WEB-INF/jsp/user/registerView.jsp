@@ -13,6 +13,9 @@
         <title>Novo Usuário</title>
     </head>
     <body>
+        <c:if test="${userSession.userLogged}">
+            <a href="logout">Sair</a>
+        </c:if>
         <h1>Novo Usuário</h1>
         <form method="post" action="${pageContext.request.contextPath}/usuario/salvar">
             <input type="text" name="user.name">
