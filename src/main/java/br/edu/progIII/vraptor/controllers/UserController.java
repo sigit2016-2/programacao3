@@ -39,6 +39,22 @@ public class UserController {
       
     }
 
+    @Get("pesquisar")
+    public void usersView(){
+       result.include("userList", userSession.getUsers());
+    }
+    
+    @Get("editar/{name}")
+    public void editView(String name){
+        User user = null;
+        for(User userFromList : userSession.getUsers()){
+           if (userFromList.getName().equalsIgnoreCase(name)){
+              user = userFromList;
+           }
+        }
+        result.include("user", user);
+    }
+    
     //usuario/salvar
     @Post("salvar")
     public void save(User user) {
@@ -48,6 +64,11 @@ public class UserController {
         controller. No caso, a rota é registerView
          */
         result.redirectTo(this).registerView();
+    }
+    
+    @Post("atualizar")
+    public void update(User user){
+        
     }
 
     @Get("apagar")

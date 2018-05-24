@@ -12,6 +12,7 @@ import br.com.caelum.vraptor.Result;
 import br.edu.progIII.vraptor.annotations.Private;
 import br.edu.progIII.vraptor.components.UserSession;
 import br.edu.progIII.vraptor.model.User;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -35,9 +36,10 @@ public class LoginController {
     @Post("autenticar")
     public void authenticate(User user){
         System.out.println("LoginController "  + user);
+       List<User> users = userSession.getUsers();
        if (userSession.getUsers().get(0).equals(user)){
           userSession.setUserLogged(user);
-          result.redirectTo(UserController.class).registerView();
+          result.redirectTo(IndexController.class).index();
        }else{
            //Mandar de volta para view de login
            //Como mensagem de erro. 
@@ -45,4 +47,11 @@ public class LoginController {
           result.redirectTo(this).getLoginView();
        }
     }
+    
+    @Get("sair")
+    public void logout(){
+        userSession.logout();
+        result.redirectTo(this).getLoginView();
+    }
+    
 }

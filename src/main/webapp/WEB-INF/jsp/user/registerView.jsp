@@ -14,7 +14,8 @@
     </head>
     <body>
         <c:if test="${userSession.userLogged}">
-            <a href="logout">Sair</a>
+            <!--Raiz do projeto -->
+            <a href="${pageContext.request.contextPath}/sair">Sair</a>
         </c:if>
         <h1>Novo Usuário</h1>
         <form method="post" action="${pageContext.request.contextPath}/usuario/salvar">
@@ -22,29 +23,6 @@
             <input type="password" name="user.password">
             <button type="submit">Salvar</button>      
         </form>
-        <c:choose>
-            <c:when test="${userSession.users.size() eq 0}"> 
-                <p>Não há usuários cadastrados!</p>
-            </c:when>
-            <c:otherwise>
-                <a  href="${pageContext.request.contextPath}/usuario/apagar">Apagar</a>
-                <table border="1" style="margin-top: 10px;">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Senha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${userSession.users}" var="user">
-                            <tr>
-                                <td>${user.name}</td> 
-                                <td>${user.password}</td> 
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>    
-            </c:otherwise>    
-        </c:choose>    
+       
     </body>
 </html>

@@ -30,7 +30,7 @@ public class AuthenticationIntercept implements Interceptor{
     
     @Override // Você executa a ação quando for interceptado
     public void intercept(InterceptorStack is, ControllerMethod cm, Object o) throws InterceptionException {
-        if(userSession.isUserLogged()){
+        if(!userSession.isUserLogged()){
             //Não há usuário logado, então vai logar!
             result.redirectTo(LoginController.class).getLoginView();
         }else{

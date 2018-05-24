@@ -28,7 +28,6 @@ public class UserSession implements Serializable{
     
     public UserSession() {
        users.add(new User("João", "123"));
-       System.out.println("Init User Session " + users);
     }
 
     public User getUserLogged() {
@@ -54,5 +53,7 @@ public class UserSession implements Serializable{
         users = new ArrayList<>();
     }  
     
-    
+    public void logout(){
+        userLogged = null;
+    }
 }
